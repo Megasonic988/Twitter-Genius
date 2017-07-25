@@ -1,6 +1,7 @@
 # Twitter Genius
 
 You must have Yarn installed to run the application.  
+Run `yarn start` to start a local development server to host the add-in.  
 
 1. Go to Word and create a blank document.  
 2. Go to Insert > Office Add-ins.  
