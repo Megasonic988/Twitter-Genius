@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as OfficeHelper from './OfficeHelper';
+import * as TextAnalyticsHelper from './TextAnalyticsHelper';
 
 const Twitter = require('twitter');
 const Office = window.Office;
@@ -23,6 +24,10 @@ class App extends Component {
           });
       });
     };
+    TextAnalyticsHelper.getKeyPhrases("Apple's boss has promised to build three new manufacturing plants in the United States, according to an interview President Donald Trump has given to the Wall Street Journal.")
+      .then(res => {
+        console.log(res)
+      })
   }
   render() {
     return (
