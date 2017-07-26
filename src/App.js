@@ -6,20 +6,20 @@ import * as TextAnalyticsHelper from './TextAnalyticsHelper';
 
 const Twitter = require('twitter');
 const Office = window.Office;
-const OAUTH = "https://localhost:7777";
-
-function GetBearerToken() {
-    let ajax = new XMLHttpRequest();
-    ajax.onload = ShowTweets;
-    ajax.open("GET", OAUTH, true);
-    ajax.send();
-}
-
-function ShowTweets() {
-    console.log(JSON.parse(this.responseText));
-}
+const OAUTH = "https://localhost:7777?text=";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {tweets: []};
+  }
+  GetTweets(searchString) {
+    fetch(OAUTH + encodeURI(searchString)).then((res) => {
+      return res.json();
+    }).then((res) => {
+      this.setState({tweets: res.statuses});
+    });
+  }
   componentWillMount() {
     Office.initialize = function (reason) {
       OfficeHelper.addSelectionChangedEventHandler(function() {
@@ -40,17 +40,14 @@ class App extends Component {
       .then(res => {
         console.log(res)
       })
+    this.GetTweets("taco bell");
   }
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to lol.
-        </p>
+        {this.state.tweets.map((tweet) => {
+          return (<p className="Tweet">{tweet.text}</p>);
+        })}
       </div>
     );
   }

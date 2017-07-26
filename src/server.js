@@ -30,9 +30,9 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", function(req, res) {
-    client.get("search/tweets", {q: "donald trump"}, function(error, tweets, response){
+    client.get("search/tweets", {q: req.query.text}, function(error, tweets, response){
         if(error) throw error;
-        res.send(tweets);  // The favorites.
+        res.send(tweets);
     });
 });
 

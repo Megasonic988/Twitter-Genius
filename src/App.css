@@ -18,6 +18,16 @@
   font-size: large;
 }
 
+.Tweet {
+  padding: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  border: 1px solid gainsboro;
+  border-radius:10px;
+  box-shadow: 5px 5px 5px gainsboro;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
