@@ -6,6 +6,18 @@ import * as TextAnalyticsHelper from './TextAnalyticsHelper';
 
 const Twitter = require('twitter');
 const Office = window.Office;
+const OAUTH = "https://localhost:7777";
+
+function GetBearerToken() {
+    let ajax = new XMLHttpRequest();
+    ajax.onload = ShowTweets;
+    ajax.open("GET", OAUTH, true);
+    ajax.send();
+}
+
+function ShowTweets() {
+    console.log(JSON.parse(this.responseText));
+}
 
 class App extends Component {
   componentWillMount() {
