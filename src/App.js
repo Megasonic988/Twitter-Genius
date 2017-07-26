@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as OfficeHelper from './OfficeHelper';
 
 const Twitter = require('twitter');
+const Office = window.Office;
 
 class App extends Component {
   componentWillMount() {
-    console.log(Twitter)
+    Office.initialize = function (reason) {
+      OfficeHelper.addSelectionChangedEventHandler(function() {
+        OfficeHelper.getSelectedText()
+          .then(selectedText => {
+            if (selectedText) {
+              return selectedText;
+            } else {
+              return OfficeHelper.getCurrentSentence();
+            }
+          })
+          .then(text => {
+            console.log(text);
+          });
+      });
+    };
   }
   render() {
     return (
