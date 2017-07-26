@@ -17,12 +17,13 @@ class App extends Component {
     fetch(OAUTH + encodeURI(searchString)).then((res) => {
       return res.json();
     }).then((res) => {
-      this.setState({tweets: res.statuses});
+      if (res.statuses.length > 0)
+        this.setState({tweets: res.statuses});
     });
   }
   componentWillMount() {
-    Office.initialize = function (reason) {
-      OfficeHelper.addSelectionChangedEventHandler(function() {
+    Office.initialize = (reason) => {
+      OfficeHelper.addSelectionChangedEventHandler(() => {
         OfficeHelper.getSelectedText()
           .then(selectedText => {
             if (selectedText) {
@@ -32,21 +33,25 @@ class App extends Component {
             }
           })
           .then(text => {
-            console.log(text);
+            console.log('text: ', text)
+            return TextAnalyticsHelper.getKeyPhrases(text);
+          })
+          .then(keyPhrases => {
+            keyPhrases = keyPhrases.map(phrase => phrase.split(' ')[phrase.split(' ').length - 1]);
+            keyPhrases = keyPhrases.filter((phrase, index) => index < 3);
+            console.log('key phrases: ', keyPhrases)
+            if (keyPhrases.length > 0 && keyPhrases[0] !== '') {
+              this.GetTweets(keyPhrases.join(' '));
+            }
           });
       });
     };
-    TextAnalyticsHelper.getKeyPhrases("Apple's boss has promised to build three new manufacturing plants in the United States, according to an interview President Donald Trump has given to the Wall Street Journal.")
-      .then(res => {
-        console.log(res)
-      })
-    this.GetTweets("taco bell");
   }
   render() {
     return (
       <div className="App">
-        {this.state.tweets.map((tweet) => {
-          return (<p className="Tweet">{tweet.text}</p>);
+        {this.state.tweets.map((tweet, index) => {
+          return (<p key={index} className="Tweet">{tweet.text}</p>);
         })}
       </div>
     );

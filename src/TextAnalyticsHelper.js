@@ -31,7 +31,7 @@ export function getKeyPhrases(text) {
       return res.json();
     })
     .then(function(res) {
-      return res.documents[0].keyPhrases;
+      return res.documents ? res.documents[0].keyPhrases : [];
     });
 }
 
@@ -41,6 +41,6 @@ export function getSentiment(text) {
       return res.json();
     })
     .then(function(res) {
-      return res.documents[0].score;
+      return res.documents[0] ? res.documents[0].score : undefined;
     });
 }
