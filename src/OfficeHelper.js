@@ -62,19 +62,3 @@ export function addSelectionChangedEventHandler(cb) {
     if (cb) cb();
   });
 }
-
-// function setup() {
-//     Word.run(function (context) {
-//         // lets insert a couple of paragraphs to illustrate the point..
-//         context.document.body.clear();
-//         context.document.body.insertParagraph("Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.", "start");
-//         context.document.body.paragraphs.getLast().insertText("To make your document look professionally produced, Word provides header, footer, cover page, and text box designs that complement each other. For example, you can add a matching cover page, header, and sidebar. Click Insert and then choose the elements you want from the different galleries.", "replace");
-//         return context.sync()
-//             .then(function () {
-//                 context.document.body.paragraphs.getFirst().alignment = "left";
-//                 context.document.body.paragraphs.getLast().alignment = "left";
-//                 return context.sync();
-//             })
-//     })
-//         .catch(OfficeHelpers.Utilities.log);
-// }
