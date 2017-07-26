@@ -4,9 +4,28 @@ import './App.css';
 
 const Twitter = require('twitter');
 
+const KEY = "or1oaSQouidlMFlzNqoweDaas";
+const SECRET = "m9SzMpRyrXGoBmhfYweQNQpd0gfBqfQOLRp1CSax8jBJ83vvXO";
+const BEARER = "AAAAAAAAAAAAAAAAAAAAANa21gAAAAAAOFrVQ4loW0b2AJHNJfrANzzWmls%3Dcn02qQj9aIPJ0DKVykq7qGXR4mdYQgTw2euFNnRcEe8FumRmGP";
+const OAUTH = "https://localhost:7777";
+
+let cat = KEY + ":" + SECRET;
+let credentials = new Buffer(cat).toString("base64");
+
+function GetBearerToken() {
+    let ajax = new XMLHttpRequest();
+    ajax.onload = ShowTweets;
+    ajax.open("GET", OAUTH, true);
+    ajax.send();
+}
+
+function ShowTweets() {
+    console.log(JSON.parse(this.responseText));
+}
+
 class App extends Component {
   componentWillMount() {
-    console.log(Twitter)
+    GetBearerToken();
   }
   render() {
     return (
