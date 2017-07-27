@@ -1,4 +1,4 @@
-# Twitter Genius
+# Twitter Wizard
 
 You must have Yarn installed to run the application.  
 Run `yarn start` to start a local development server to host the add-in.  

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as OfficeHelper from './OfficeHelper';
 import * as TextAnalyticsHelper from './TextAnalyticsHelper';
 
-const Twitter = require('twitter');
 const Office = window.Office;
 const OAUTH = "https://localhost:7777?text=";
 
@@ -51,7 +49,14 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.tweets.map((tweet, index) => {
-          return (<p key={index} className="Tweet">{tweet.text}</p>);
+            let urlRegEx = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*)#?(?:[\.\!\/\\\w]*))?)/g;
+            return (
+                <div key={index} className="Tweet">
+                    <p className="Name">{tweet.user.name}</p>
+                    <p className="SmallText">{tweet.user.created_at.substring(0, tweet.user.created_at.indexOf('+'))}</p>
+                    <p dangerouslySetInnerHTML={{__html: tweet.text.replace(urlRegEx, "<a href='$1'>$1</a>")}}></p>
+                </div>
+            );
         })}
       </div>
     );

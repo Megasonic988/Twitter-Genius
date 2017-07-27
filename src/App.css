@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -19,13 +19,24 @@
 }
 
 .Tweet {
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   margin-bottom: 1em;
   margin-left: 1em;
   margin-right: 1em;
   border: 1px solid gainsboro;
   border-radius:10px;
   box-shadow: 5px 5px 5px gainsboro;
+}
+
+.Name {
+    margin-bottom: 0px;
+    color: #0084b4;
+}
+
+.SmallText {
+    font-size: 12px;
+    margin-top: 0px;
 }
 
 @keyframes App-logo-spin {
