@@ -15,7 +15,7 @@ We use React for rendering the taskpane view.
 
 ## Get Started
 
-First, cd into the /src directory and run `node server.js`. This will start the Node.js server for the Twitter API.  
+First, cd into the src/ directory and run `node server.js`. This will start the Node.js server for the Twitter API.  
 Then, run `HTTPS=true yarn start` or `HTTPS=true npm start` in the root directory to start a local development server to host the add-in.  
 1. Go to [Word Online](https://office.live.com/start/Word.aspx) and create a blank document.  
 2. Go to Insert > Office Add-ins.  
